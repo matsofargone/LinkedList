@@ -3,8 +3,8 @@ const Node = function(value, nextNode=null){
 }
 
 
-const node1 = Node(5);
-const node2 = Node(6);
+// const node1 = Node(5);
+// const node2 = Node(6);
 
 
 // console.log(node1);
@@ -16,7 +16,7 @@ const LinkedList = function(value){
     
     let head = Node(value);
     let tail = head;
-    let list = [head];
+    // let list = [head];
     
 
     
@@ -27,7 +27,7 @@ const LinkedList = function(value){
     //    console.log('newNode: ', newNode);
        tail.nextNode = newNode;
        tail = newNode;
-       list.push(tail);
+    //    list.push(tail);
        
     }
 
@@ -35,7 +35,7 @@ const LinkedList = function(value){
         let newNode = Node(value);
         newNode.nextNode = head;
         head = newNode;
-        list.unshift(head);
+        // list.unshift(head);
     }
 
     function at(index) {
@@ -54,7 +54,7 @@ const LinkedList = function(value){
         let newNode = Node(v);
         newNode.nextNode = after;
         prev.nextNode = newNode;
-        list.splice(i, 0, newNode);
+        // list.splice(i, 0, newNode);
         
     }
 
@@ -63,11 +63,68 @@ const LinkedList = function(value){
     }
 
     function pop() {
-        //code here
+        if (head == null){
+            return console('Nothing to pop');
+        }
+        
+        let prev = head;
+        let temp;
+
+        // console.log('head: ', prev);
+        // console.log('temp: ', temp);
+        // console.log('temp Next: ', temp.nextNode);
+
+        while (prev.nextNode != null) {
+           
+             temp = prev;
+             prev = prev.nextNode;
+            //  console.log(prev.nextNode);
+            
+            
+            
+        }
+        temp.nextNode = null;
+            // list.pop();
+        delete temp,  tail = prev;;
+       
+        
+
+            
+       
+      
+
     }
 
-    function remove() {
-        //code here
+    function remove(index) {
+        if (head == '') {
+            return 'Empty list';
+        }
+
+        let prev = head;
+
+        for (let k = 0; k < index-1; k++) {
+            prev = prev.nextNode;
+            
+        }
+
+        let del = prev.nextNode, aft = del.nextNode;
+        // console.log('Node to be deleted: ', del);
+        prev.nextNode = aft 
+        // console.log(del);
+        delete del;
+    }
+
+    function printList() {
+        const list = [];
+        let currentNode = head;
+        while(currentNode != null) {
+            list.push(`( ${currentNode.value} )`);
+            currentNode = currentNode.nextNode;
+        }
+        list.push('null');
+        let display = list.join(' -> ');
+
+        console.log(display);
     }
 
     
@@ -76,7 +133,7 @@ const LinkedList = function(value){
 
 
 
-    return {list, append, prepend, tail, head, at, insert, size}
+    return { append, prepend, tail, head, at, insert, size, pop, printList, remove}
 
 
 }
@@ -94,10 +151,12 @@ ll.prepend(100);
 ll.insert(1, 90);
 ll.insert(3, 99);
 ll.insert(4,22);
-console.log(ll.list);
-console.log(ll.size());
-// console.log(ll.length);
-// console.log(ll.length);
-// console.log(ll.head);
-// console.log(ll.tail);
+ll.pop();
+ll.pop();
+ll.printList();
+
+
+// console.log(ll.list);
+// console.log(ll.size());
+
 
